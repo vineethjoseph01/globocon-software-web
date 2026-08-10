@@ -1,0 +1,40 @@
+@model GloboconSoftwareWeb.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Admin Portal Login";
+}
+
+<div style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+    <div style="max-width: 420px; width: 100%; background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-lg);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="~/images/globocon-logo.jpg" alt="Globocon Software Australia" style="height: 48px; margin-bottom: 1rem;" />
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-navy);">Admin Portal</h2>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 4px;">Enter the administrative password to manage videos and submissions.</p>
+        </div>
+
+        <form asp-controller="Admin" asp-action="Login" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="ReturnUrl" />
+
+            <div asp-validation-summary="ModelOnly" style="color: #DC2626; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="form-label">Administrator Password</label>
+                <div style="position: relative;">
+                    <input asp-for="Password" type="password" class="form-control-custom" placeholder="Enter admin password..." required autofocus />
+                </div>
+                <span asp-validation-for="Password" style="color: #DC2626; font-size: 0.8rem;"></span>
+            </div>
+
+            <button type="submit" class="btn-primary-custom" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem; margin-top: 1rem;">
+                <i class="fas fa-lock"></i> Access Dashboard
+            </button>
+        </form>
+
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color); text-align: center;">
+            <p style="font-size: 0.8rem; color: var(--text-light);">
+                <i class="fas fa-shield-alt" style="margin-right: 4px;"></i> Secure single-password authentication
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,155 @@
+@model GloboconSoftwareWeb.Models.ContactSubmission
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<div class="hero-section">
+    <div class="hero-container">
+        <div>
+            <span class="hero-badge"><i class="fas fa-paper-plane"></i> Get in Touch</span>
+            <h1 class="hero-title">Let's Build Something Intelligent Together</h1>
+            <p class="hero-tagline">
+                Have a project in mind, need a product demonstration, or want to explore our AI solutions? Send us a message and our team will get back to you.
+            </p>
+            <div class="hero-actions">
+                <a href="#contactFormSection" class="btn-primary-custom">Fill Contact Form</a>
+                <a href="mailto:info@globocon.com.au" class="btn-dark-custom"><i class="fas fa-envelope"></i> Direct Email</a>
+            </div>
+        </div>
+        <div class="hero-card-preview">
+            <div class="hero-stats">
+                <div>
+                    <span class="stat-number">&lt; 24h</span>
+                    <span class="stat-label">Response Time</span>
+                </div>
+                <div>
+                    <span class="stat-number">Sydney</span>
+                    <span class="stat-label">&amp; Melbourne HQ</span>
+                </div>
+                <div>
+                    <span class="stat-number">Free</span>
+                    <span class="stat-label">Initial Assessment</span>
+                </div>
+                <div>
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Confidential</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="section-container">
+        <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start;">
+            
+            <!-- Contact Information Card -->
+            <div>
+                <div style="background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-sm);">
+                    <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1.5rem;">Globocon Software Australia</h3>
+
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                        <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.1rem; flex-shrink: 0;"><i class="fas fa-map-location-dot"></i></div>
+                        <div>
+                            <strong style="color: var(--primary-navy); font-size: 1rem;">Headquarters</strong>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2px;">Level 24, International Towers<br>Barangaroo, Sydney NSW 2000<br>Australia</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                        <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.1rem; flex-shrink: 0;"><i class="fas fa-building"></i></div>
+                        <div>
+                            <strong style="color: var(--primary-navy); font-size: 1rem;">Melbourne Office</strong>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2px;">Level 12, 120 Collins Street<br>Melbourne VIC 3000<br>Australia</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                        <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.1rem; flex-shrink: 0;"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <strong style="color: var(--primary-navy); font-size: 1rem;">Email Us</strong>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2px;">
+                                <a href="mailto:info@globocon.com.au" style="color: var(--accent-blue); font-weight: 600;">info@globocon.com.au</a><br>
+                                <a href="mailto:support@globocon.com.au" style="color: var(--accent-blue); font-weight: 600;">support@globocon.com.au</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                        <div class="card-icon" style="width: 44px; height: 44px; font-size: 1.1rem; flex-shrink: 0;"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <strong style="color: var(--primary-navy); font-size: 1rem;">Call Us</strong>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 2px;">+61 (02) 8000 9000<br>Mon - Fri: 8:30 AM - 5:30 PM AEST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form with Turnstile Spam Protection & Legal Consent -->
+            <div>
+                <div class="form-card">
+                    <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">Send Us a Message</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem;">Fill out the form below to request a callback or solution proposal.</p>
+
+                    <form asp-controller="Home" asp-action="Contact" method="post">
+                        @Html.AntiForgeryToken()
+                        
+                        <!-- Anti-Spam Honeypot Field (Hidden from human visitors) -->
+                        <div style="display:none !important;" aria-hidden="true">
+                            <input type="text" name="WebsiteUrl" tabindex="-1" autocomplete="off" />
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label asp-for="Name" class="form-label">Full Name *</label>
+                                <input asp-for="Name" class="form-control-custom" placeholder="e.g. Sarah Jenkins" required />
+                                <span asp-validation-for="Name" style="color:#DC2626; font-size:0.8rem;"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Email" class="form-label">Email Address *</label>
+                                <input asp-for="Email" type="email" class="form-control-custom" placeholder="e.g. sarah@company.com.au" required />
+                                <span asp-validation-for="Email" style="color:#DC2626; font-size:0.8rem;"></span>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label asp-for="Phone" class="form-label">Phone Number</label>
+                                <input asp-for="Phone" class="form-control-custom" placeholder="e.g. 0400 000 000" />
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Subject" class="form-label">Subject *</label>
+                                <input asp-for="Subject" class="form-control-custom" placeholder="e.g. SmartRoster AI Demo Request" required />
+                                <span asp-validation-for="Subject" style="color:#DC2626; font-size:0.8rem;"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Message" class="form-label">Message *</label>
+                            <textarea asp-for="Message" class="form-control-custom" placeholder="Tell us about your business requirement or project scope..." required></textarea>
+                            <span asp-validation-for="Message" style="color:#DC2626; font-size:0.8rem;"></span>
+                        </div>
+
+                        <!-- Cloudflare Turnstile Spam Protection Widget -->
+                        <div class="form-group" style="margin-bottom: 1.25rem;">
+                            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="light"></div>
+                        </div>
+
+                        <button type="submit" class="btn-primary-custom" style="width: 100%; justify-content: center; padding: 0.9rem; font-size: 1rem;">
+                            Send Message <i class="fas fa-paper-plane"></i>
+                        </button>
+
+                        <p style="font-size: 0.8rem; color: var(--text-light); text-align: center; margin-top: 1rem; line-height: 1.5;">
+                            By submitting this form, you agree to our 
+                            <a asp-controller="Home" asp-action="Privacy" style="color: var(--accent-blue); font-weight: 600;">Privacy Policy</a> 
+                            and 
+                            <a asp-controller="Home" asp-action="Terms" style="color: var(--accent-blue); font-weight: 600;">Terms of Service</a>.
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

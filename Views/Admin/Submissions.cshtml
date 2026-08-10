@@ -1,0 +1,85 @@
+@model IEnumerable<GloboconSoftwareWeb.Models.ContactSubmission>
+
+@{
+    ViewData["Title"] = "Contact Form Submissions";
+}
+
+<div class="hero-section" style="padding: 2.5rem 2rem; background: linear-gradient(135deg, #051F6C 0%, #031448 100%);">
+    <div class="section-container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <h1 class="hero-title" style="font-size: 2rem; margin: 0;">Contact Form Submissions</h1>
+            <p style="color: #CBD5E1; font-size: 0.95rem; margin-top: 4px;">Inquiries submitted via the public Contact page.</p>
+        </div>
+        <a asp-controller="Admin" asp-action="Dashboard" class="btn-outline-custom" style="color: #fff; border-color: rgba(255,255,255,0.4);">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+</div>
+
+<section class="section">
+    <div class="section-container">
+        <div style="background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow-sm);">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-navy);">Received Messages</h3>
+                <span class="badge-pill" style="font-size: 0.9rem; padding: 0.5rem 1rem;">Total Inquiries: @Model.Count()</span>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+                    <i class="fas fa-inbox" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-light);"></i>
+                    <p>No contact submissions received yet.</p>
+                </div>
+            }
+            else
+            {
+                <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                    @foreach (var item in Model)
+                    {
+                        <div style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem; background: @(item.IsRead ? "#FAFAFA" : "#FFFFFF"); border-left: 5px solid @(item.IsRead ? "#CBD5E1" : "var(--accent-blue)");">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+                                <div>
+                                    <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--primary-navy);">@item.Subject</h4>
+                                    <div style="font-size: 0.875rem; color: var(--text-muted); margin-top: 2px;">
+                                        <strong>From:</strong> @item.Name &lt;<a href="mailto:@item.Email">@item.Email</a>&gt;
+                                        @if (!string.IsNullOrEmpty(item.Phone))
+                                        {
+                                            <span> &bull; <strong>Phone:</strong> @item.Phone</span>
+                                        }
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <span style="font-size: 0.8rem; color: var(--text-light); margin-right: 0.5rem;">
+                                        <i class="far fa-clock"></i> @item.SubmittedAt.ToString("MMM dd, yyyy HH:mm")
+                                    </span>
+                                    <form asp-controller="Admin" asp-action="ToggleSubmissionRead" asp-route-id="@item.Id" method="post" style="display: inline;">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" style="background: none; border: 1px solid var(--border-color); padding: 0.35rem 0.75rem; border-radius: 4px; font-size: 0.8rem; cursor: pointer; color: var(--text-muted);">
+                                            @if (item.IsRead)
+                                            {
+                                                <span><i class="far fa-envelope"></i> Mark Unread</span>
+                                            }
+                                            else
+                                            {
+                                                <span><i class="fas fa-envelope-open"></i> Mark Read</span>
+                                            }
+                                        </button>
+                                    </form>
+                                    <form asp-controller="Admin" asp-action="DeleteSubmission" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Delete this submission?');" style="display: inline;">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" style="background: #FEE2E2; color: #DC2626; border: 1px solid #FCA5A5; padding: 0.35rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; cursor: pointer;">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div style="background: var(--bg-light); padding: 1rem 1.25rem; border-radius: 6px; font-size: 0.95rem; color: var(--text-main); line-height: 1.6; white-space: pre-wrap;">@item.Message</div>
+                        </div>
+                    }
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

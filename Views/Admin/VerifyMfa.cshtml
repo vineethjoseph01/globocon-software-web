@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Multi-Factor Authentication";
+}
+
+<div style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+    <div style="max-width: 440px; width: 100%; background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem; box-shadow: var(--shadow-lg);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div style="width: 60px; height: 60px; background: #EFF6FF; color: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin: 0 auto 1rem auto; border: 2px solid var(--accent-blue);">
+                <i class="fas fa-key"></i>
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 800; color: var(--primary-navy);">Two-Factor Authentication</h2>
+            <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 4px;">Enter the 6-digit MFA security code to complete administrator verification.</p>
+        </div>
+
+        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 0.85rem; border-radius: 8px; font-size: 0.85rem; color: var(--primary-navy); margin-bottom: 1.5rem; text-align: center;">
+            <i class="fas fa-shield-halved" style="color: var(--accent-blue); margin-right: 4px;"></i> Demo MFA Code: <strong>654321</strong>
+        </div>
+
+        <form asp-controller="Admin" asp-action="VerifyMfa" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+
+            <div asp-validation-summary="ModelOnly" style="color: #DC2626; font-size: 0.85rem; margin-bottom: 1rem; text-align: center;"></div>
+
+            <div class="form-group">
+                <label class="form-label">6-Digit MFA Verification Code</label>
+                <input name="mfaCode" type="text" maxlength="6" class="form-control-custom" placeholder="e.g. 654321" style="letter-spacing: 0.25em; text-align: center; font-size: 1.25rem; font-weight: 700;" required autofocus />
+            </div>
+
+            <button type="submit" class="btn-primary-custom" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem; margin-top: 1rem;">
+                <i class="fas fa-user-shield"></i> Verify &amp; Access Dashboard
+            </button>
+        </form>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+            <a asp-controller="Admin" asp-action="Login" style="font-size: 0.85rem; color: var(--text-muted);">
+                <i class="fas fa-arrow-left"></i> Back to Password Login
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+@model GloboconSoftwareWeb.ViewModels.VideoUploadViewModel
+
+@{
+    ViewData["Title"] = "Add New Video Showcase";
+}
+
+<div class="hero-section" style="padding: 2.5rem 2rem; background: linear-gradient(135deg, #051F6C 0%, #031448 100%);">
+    <div class="section-container" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+            <h1 class="hero-title" style="font-size: 2rem; margin: 0;">Add Showcase Video</h1>
+            <p style="color: #CBD5E1; font-size: 0.95rem; margin-top: 4px;">Upload MP4 video files to showcase on the Our Work page.</p>
+        </div>
+        <a asp-controller="Admin" asp-action="Dashboard" class="btn-outline-custom" style="color: #fff; border-color: rgba(255,255,255,0.4);">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+    </div>
+</div>
+
+<section class="section">
+    <div class="section-container" style="max-width: 700px;">
+        <div class="form-card">
+            <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1.5rem;">Video File Details</h3>
+
+            <form asp-controller="Admin" asp-action="CreateVideo" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly" style="color: #DC2626; font-size: 0.85rem; margin-bottom: 1rem;"></div>
+
+                <div class="form-group">
+                    <label asp-for="Title" class="form-label">Video Title *</label>
+                    <input asp-for="Title" class="form-control-custom" placeholder="e.g. SmartRoster AI - Automated Rostering Demo" required />
+                    <span asp-validation-for="Title" style="color: #DC2626; font-size: 0.8rem;"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="VideoFile" class="form-label">Select Video File (.mp4, .webm, .mov) *</label>
+                    <input asp-for="VideoFile" type="file" accept="video/mp4,video/webm,video/quicktime" class="form-control-custom" style="padding: 0.5rem;" required />
+                    <span asp-validation-for="VideoFile" style="color: #DC2626; font-size: 0.8rem;"></span>
+                    <small style="color: var(--text-light); display: block; margin-top: 4px;">Supports portrait reels and landscape formats.</small>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label asp-for="DisplayOrder" class="form-label">Display Order</label>
+                        <input asp-for="DisplayOrder" type="number" class="form-control-custom" />
+                        <small style="color: var(--text-light);">Lower numbers display first.</small>
+                    </div>
+
+                    <div class="form-group" style="display: flex; align-items: center; margin-top: 1.8rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-weight: 600; color: var(--primary-navy);">
+                            <input asp-for="IsPortrait" type="checkbox" style="width: 18px; height: 18px;" />
+                            Is Mobile Reel / Vertical Format
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 1rem; background: #F0FDF4; border: 1.5px solid #86EFAC; padding: 1rem; border-radius: 8px;">
+                    <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer; font-weight: 700; color: #166534; margin: 0;">
+                        <input asp-for="IsMalayalam" type="checkbox" style="width: 20px; height: 20px; accent-color: #16A34A;" />
+                        <span><i class="fas fa-language"></i> Upload as Malayalam Showcase Video (Unlisted Page Only)</span>
+                    </label>
+                    <small style="color: #15803D; display: block; margin-top: 4px; margin-left: 28px;">
+                        When checked, this video will appear on the unlisted Malayalam Work Showcase page (/Home/MalayalamWork) instead of the main public showcase.
+                    </small>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn-primary-custom" style="flex-grow: 1; justify-content: center; padding: 0.85rem;">
+                        <i class="fas fa-upload"></i> Upload Video Showcase
+                    </button>
+                    <a asp-controller="Admin" asp-action="Dashboard" class="btn-outline-custom">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

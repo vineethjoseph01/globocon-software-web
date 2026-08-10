@@ -1,0 +1,131 @@
+@model IEnumerable<GloboconSoftwareWeb.Models.Video>
+@using System.Web
+
+@{
+    ViewData["Title"] = "Our Work - Software Video Showcase";
+    ViewData["Description"] = "Watch interactive video demonstrations and product showcases of custom mobile apps, AI platforms, and web software built by Globocon Software Australia.";
+}
+
+<div class="hero-section">
+    <div class="hero-container">
+        <div>
+            <span class="hero-badge"><i class="fas fa-video"></i> Video Showcase</span>
+            <h1 class="hero-title">Our Previous Work &amp; Product Demos</h1>
+            <p class="hero-tagline">
+                Explore video demonstrations of custom software, mobile apps, and AI platforms delivered by Globocon Software Australia.
+            </p>
+            <div class="hero-actions">
+                <a asp-controller="Home" asp-action="Contact" class="btn-primary-custom">Request Custom Demo</a>
+                <a asp-controller="Home" asp-action="Products" class="btn-dark-custom">Explore AI Products</a>
+            </div>
+        </div>
+        <div class="hero-card-preview">
+            <div class="hero-stats">
+                <div>
+                    <span class="stat-number">4+</span>
+                    <span class="stat-label">Video Demos</span>
+                </div>
+                <div>
+                    <span class="stat-number">1080p</span>
+                    <span class="stat-label">HD Playback</span>
+                </div>
+                <div>
+                    <span class="stat-number">iOS/Web</span>
+                    <span class="stat-label">Cross-Platform</span>
+                </div>
+                <div>
+                    <span class="stat-number">Live</span>
+                    <span class="stat-label">Interactive Modal</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="section-container">
+        @if (!Model.Any())
+        {
+            <div style="text-align: center; padding: 4rem 2rem; background: #fff; border-radius: 12px; border: 1px solid var(--border-color);">
+                <i class="fas fa-film" style="font-size: 3rem; color: var(--text-light); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 1.5rem; color: var(--primary-navy);">No Videos Uploaded Yet</h3>
+                <p style="color: var(--text-muted);">Check back soon or log into the Admin Panel to upload showcase videos.</p>
+            </div>
+        }
+        else
+        {
+            <div class="video-grid">
+                @foreach (var video in Model)
+                {
+                    var encodedTitle = HttpUtility.JavaScriptStringEncode(video.Title);
+                    <div class="video-card" onclick="openVideoModal('@video.FilePath', '@encodedTitle')">
+                        <div class="video-thumbnail-wrapper">
+                            <!-- Using object-fit: contain on video tag so landscape and portrait/reels display without clipping -->
+                            <video class="video-preview-element" preload="metadata" muted playsinline>
+                                <source src="@video.FilePath#t=0.5" type="video/mp4">
+                            </video>
+                            <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="video-info">
+                            <h4 class="video-card-title">@video.Title</h4>
+                            <div class="video-meta">
+                                <span><i class="far fa-calendar-alt"></i> @video.UploadDate.ToString("MMM dd, yyyy")</span>
+                                @if (video.IsPortrait)
+                                {
+                                    <span class="badge-pill" style="margin: 0; background: #F1F5F9; color: var(--primary-navy); font-size: 0.7rem;">Mobile Reel</span>
+                                }
+                                <span style="margin-left: auto; color: var(--accent-blue); font-weight: 600;">Play <i class="fas fa-play-circle"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+<!-- Video Lightbox Modal -->
+<div class="modal-backdrop-custom" id="workVideoModal">
+    <div class="modal-box">
+        <div class="modal-header-bar">
+            <div class="modal-title" id="workVideoTitle">Product Showcase</div>
+            <button class="modal-close-btn" onclick="closeWorkVideoModal()">&times;</button>
+        </div>
+        <div class="modal-video-wrapper">
+            <video class="modal-video-element" id="workVideoPlayer" controls playsinline autoplay>
+                <source id="workVideoSource" src="" type="video/mp4">
+                Your browser does not support HTML5 video playback.
+            </video>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openVideoModal(videoUrl, title) {
+            const modal = document.getElementById('workVideoModal');
+            const player = document.getElementById('workVideoPlayer');
+            const source = document.getElementById('workVideoSource');
+            const titleEl = document.getElementById('workVideoTitle');
+
+            titleEl.textContent = title;
+            source.src = videoUrl;
+            player.load();
+            modal.classList.add('active');
+            player.play();
+        }
+
+        function closeWorkVideoModal() {
+            const modal = document.getElementById('workVideoModal');
+            const player = document.getElementById('workVideoPlayer');
+            player.pause();
+            modal.classList.remove('active');
+        }
+
+        document.getElementById('workVideoModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeWorkVideoModal();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Globocon Software Australia</title>
+    <meta name="description" content="@(ViewData["Description"] ?? "Globocon Software Australia delivers AI-powered web, mobile, and SaaS software engineering for forward-thinking enterprise organizations.")" />
+    
+    @{
+        var currentBaseUrl = $"{Context.Request.Scheme}://{Context.Request.Host}";
+        var ogImageUrl = $"{currentBaseUrl}/images/globocon-logo.jpg";
+    }
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@ViewData["Title"] - Globocon Software Australia" />
+    <meta property="og:description" content="@(ViewData["Description"] ?? "Globocon Software Australia delivers AI-powered web, mobile, and SaaS software engineering.")" />
+    <meta property="og:image" content="@ogImageUrl" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="@ViewData["Title"] - Globocon Software Australia" />
+    <meta property="twitter:description" content="@(ViewData["Description"] ?? "Globocon Software Australia delivers AI-powered web, mobile, and SaaS software engineering.")" />
+    <meta property="twitter:image" content="@ogImageUrl" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <!-- Schema.org JSON-LD Structured Data for LocalBusiness & Organization -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "Corporation",
+      "name": "Globocon Software Australia",
+      "url": "@currentBaseUrl",
+      "logo": "@ogImageUrl",
+      "description": "Enterprise AI, Web Application, Mobile App & SaaS Product Development Company in Australia.",
+      "telephone": "+61-2-8000-9000",
+      "email": "info@globocon.com.au",
+      "address": [
+        {
+          "@@type": "PostalAddress",
+          "streetAddress": "Level 24, International Towers, Barangaroo",
+          "addressLocality": "Sydney",
+          "addressRegion": "NSW",
+          "postalCode": "2000",
+          "addressCountry": "AU"
+        },
+        {
+          "@@type": "PostalAddress",
+          "streetAddress": "Level 12, 120 Collins Street",
+          "addressLocality": "Melbourne",
+          "addressRegion": "VIC",
+          "postalCode": "3000",
+          "addressCountry": "AU"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <!-- Top Announcement Bar (Inspired by Confident Care Group) -->
+    <div class="topbar-custom">
+        <div class="topbar-container">
+            <div class="topbar-items">
+                <div class="topbar-item"><i class="fas fa-phone-alt"></i> <span>+61 (02) 8000 9000</span></div>
+                <div class="topbar-item"><i class="fas fa-envelope"></i> <span>info@globocon.com.au</span></div>
+                <div class="topbar-item"><i class="fas fa-location-dot"></i> <span>Sydney &amp; Melbourne, Australia</span></div>
+            </div>
+            <div>
+                <a asp-controller="Home" asp-action="Contact" style="color: var(--accent-cyan); font-weight: 700;">
+                    <i class="fas fa-comments"></i> Request AI Consultation &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar-custom">
+            <div class="navbar-container">
+                <a class="brand-logo-link" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/globocon-logo.jpg" alt="Globocon Software Australia" class="brand-logo-img" />
+                </a>
+
+                <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Services" ? "active" : "")" asp-controller="Home" asp-action="Services">Services</a></li>
+                    <li><a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Products" ? "active" : "")" asp-controller="Home" asp-action="Products">AI Products</a></li>
+                    <li><a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Work" ? "active" : "")" asp-controller="Home" asp-action="Work">Our Work</a></li>
+                    <li><a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "About" ? "active" : "")" asp-controller="Home" asp-action="About">About Us</a></li>
+                    <li><a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "Contact" ? "active" : "")" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <li><a class="nav-link-custom @(ViewContext.RouteData.Values["Action"]?.ToString() == "CreateVideo" ? "active" : "")" asp-controller="Admin" asp-action="CreateVideo"><i class="fas fa-plus-circle" style="color: var(--accent-blue);"></i> Add Video</a></li>
+                        <li><a class="btn-dark-custom" asp-controller="Admin" asp-action="Dashboard"><i class="fas fa-tachometer-alt"></i> Admin Panel</a></li>
+                    }
+                    else
+                    {
+                        <li><a class="btn-primary-custom" asp-controller="Home" asp-action="Contact">Get Started <i class="fas fa-arrow-right"></i></a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="section-container" style="padding-top: 1.25rem;">
+            <div style="background-color: #ECFDF5; border: 2px solid #10B981; color: #065F46; padding: 0.9rem 1.35rem; border-radius: 8px; font-weight: 700; display: flex; align-items: center; justify-content: space-between; box-shadow: var(--shadow-sm);">
+                <div><i class="fas fa-check-circle" style="margin-right: 0.5rem; font-size: 1.1rem;"></i> @TempData["SuccessMessage"]</div>
+                <button type="button" onclick="this.parentElement.style.display='none';" style="background:none; border:none; color:#065F46; cursor:pointer; font-size:1.2rem;">&times;</button>
+            </div>
+        </div>
+    }
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="footer-custom">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="~/images/globocon-logo.jpg" alt="Globocon Software Australia" style="height: 56px; background: #FFFFFF; padding: 6px 14px; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);" />
+                <p>Globocon Software Australia transforms business ideas into high-performance web, mobile, and AI solutions. Build faster, smarter, and more affordably.</p>
+            </div>
+            <div>
+                <h4 class="footer-column-title">Services</h4>
+                <ul class="footer-links">
+                    <li><a asp-controller="Home" asp-action="Services">AI Web Applications</a></li>
+                    <li><a asp-controller="Home" asp-action="Services">Mobile App Development</a></li>
+                    <li><a asp-controller="Home" asp-action="Services">SaaS Product Engineering</a></li>
+                    <li><a asp-controller="Home" asp-action="Services">Software Integrations</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-column-title">Company &amp; Legal</h4>
+                <ul class="footer-links">
+                    <li><a asp-controller="Home" asp-action="About">About Us</a></li>
+                    <li><a asp-controller="Home" asp-action="Work">Our Work Showcase</a></li>
+                    <li><a asp-controller="Home" asp-action="Privacy">Privacy Policy</a></li>
+                    <li><a asp-controller="Home" asp-action="Terms">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-column-title">Contact Us</h4>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> Sydney &amp; Melbourne, Australia</li>
+                    <li><i class="fas fa-envelope" style="margin-right: 8px;"></i> <a href="mailto:info@globocon.com.au" style="color: inherit;">info@globocon.com.au</a></li>
+                    <li><i class="fas fa-phone" style="margin-right: 8px;"></i> +61 (02) 8000 9000</li>
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <li style="margin-top: 1rem;"><a asp-controller="Admin" asp-action="Dashboard" style="color: #94A3B8; font-size: 0.85rem;"><i class="fas fa-lock"></i> Admin Portal</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div>&copy; @DateTime.Now.Year Globocon Software Australia. All rights reserved. &bull; <a asp-controller="Home" asp-action="Privacy">Privacy Policy</a> &bull; <a asp-controller="Home" asp-action="Terms">Terms of Service</a></div>
+            <div>Designed for Excellence &bull; AI-Powered Solutions</div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobileMenuBtn')?.addEventListener('click', function() {
+            document.getElementById('navMenu')?.classList.toggle('show');
+        });
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.navbar-custom');
+            if (nav) {
+                if (window.scrollY > 20) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            }
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

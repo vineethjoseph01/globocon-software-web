@@ -1,0 +1,149 @@
+@model IEnumerable<GloboconSoftwareWeb.Models.Video>
+@using System.Web
+
+@{
+    ViewData["Title"] = "Malayalam Software Work Showcase";
+    ViewData["Description"] = "Exclusive video showcase of software solutions, enterprise AI, and mobile applications presented in Malayalam by Globocon Software Australia.";
+}
+
+<div class="hero-section">
+    <div class="hero-container">
+        <div>
+            <span class="hero-badge"><i class="fas fa-language"></i> Malayalam Showcase</span>
+            <h1 class="hero-title">Malayalam Work &amp; Software Showcase</h1>
+            <p class="hero-tagline">
+                Explore video demonstrations of custom software, mobile apps, and AI platforms presented for Malayalam audience by Globocon Software Australia.
+            </p>
+            <div class="hero-actions">
+                <a asp-controller="Home" asp-action="Contact" class="btn-primary-custom">Request Product Demo</a>
+                <a asp-controller="Home" asp-action="Services" class="btn-dark-custom">Explore Services</a>
+            </div>
+        </div>
+        <div class="hero-card-preview">
+            <div class="hero-stats">
+                <div>
+                    <span class="stat-number">HD</span>
+                    <span class="stat-label">Video Demos</span>
+                </div>
+                <div>
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Malayalam Audio</span>
+                </div>
+                <div>
+                    <span class="stat-number">Unlisted</span>
+                    <span class="stat-label">Special Link</span>
+                </div>
+                <div>
+                    <span class="stat-number">Globocon</span>
+                    <span class="stat-label">Australia</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-subtitle">Regional Video Demonstrations</span>
+            <h2 class="section-title">Malayalam Language Software Demos</h2>
+            <p class="section-desc">Watch video demonstrations explaining product features and capabilities.</p>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div style="text-align: center; padding: 4rem 2rem; background: #fff; border-radius: 12px; border: 1px solid var(--border-color);">
+                <i class="fas fa-film" style="font-size: 3rem; color: var(--text-light); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 1.5rem; color: var(--primary-navy);">No Malayalam Videos Uploaded Yet</h3>
+                <p style="color: var(--text-muted); margin-top: 0.5rem;">Use the Admin Panel to upload new Malayalam showcase videos.</p>
+            </div>
+        }
+        else
+        {
+            <div class="video-grid">
+                @foreach (var video in Model)
+                {
+                    var encodedTitle = HttpUtility.JavaScriptStringEncode(video.Title);
+                    <div class="video-card" onclick="openVideoModal('@video.FilePath', '@encodedTitle')">
+                        <div class="video-thumbnail-wrapper">
+                            <video class="video-preview-element" preload="metadata" muted playsinline>
+                                <source src="@video.FilePath#t=0.5" type="video/mp4">
+                            </video>
+                            <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="video-info">
+                            <span class="badge-pill" style="align-self: flex-start; margin-bottom: 0.4rem; background: #00E5FF; color: #000414;"><i class="fas fa-video"></i> Malayalam Demo</span>
+                            <h4 class="video-card-title">@video.Title</h4>
+                            <div class="video-meta">
+                                <span><i class="far fa-calendar-alt"></i> @video.UploadDate.ToString("MMM dd, yyyy")</span>
+                                <span style="margin-left: auto; color: var(--accent-blue); font-weight: 700;">Play Video <i class="fas fa-play-circle"></i></span>
+                            </div>
+                            @if (User.Identity != null && User.Identity.IsAuthenticated)
+                            {
+                                <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1.5px solid #E2E8F0; display: flex; gap: 0.5rem;" onclick="event.stopPropagation();">
+                                    <a asp-controller="Admin" asp-action="EditVideo" asp-route-id="@video.Id" class="btn-outline-custom" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; flex: 1;"><i class="fas fa-edit"></i> Edit</a>
+                                    <form asp-controller="Admin" asp-action="DeleteVideo" asp-route-id="@video.Id" method="post" style="flex: 1;" onsubmit="return confirm('Are you sure you want to delete this video?');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn-dark-custom" style="padding: 0.35rem 0.75rem; font-size: 0.8rem; width: 100%; border-color: #EF4444; background: #EF4444;"><i class="fas fa-trash"></i> Delete</button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+
+        <div class="cta-banner" style="margin-top: 4rem;">
+            <h2 class="cta-title">Need a Custom Software Solution for Your Business?</h2>
+            <p class="cta-desc">Speak directly with our technical leads in Sydney or Melbourne.</p>
+            <a asp-controller="Home" asp-action="Contact" class="btn-primary-custom">Schedule a Consultation</a>
+        </div>
+    </div>
+</section>
+
+<!-- Video Lightbox Modal -->
+<div class="modal-backdrop-custom" id="globalVideoModal">
+    <div class="modal-box">
+        <div class="modal-header-bar">
+            <div class="modal-title" id="globalVideoTitle">Malayalam Video Showcase</div>
+            <button class="modal-close-btn" onclick="closeVideoModal()">&times;</button>
+        </div>
+        <div class="modal-video-wrapper">
+            <video class="modal-video-element" id="globalVideoPlayer" controls playsinline autoplay>
+                <source id="globalVideoSource" src="" type="video/mp4">
+                Your browser does not support HTML5 video playback.
+            </video>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function openVideoModal(videoUrl, title) {
+            const modal = document.getElementById('globalVideoModal');
+            const player = document.getElementById('globalVideoPlayer');
+            const source = document.getElementById('globalVideoSource');
+            const titleEl = document.getElementById('globalVideoTitle');
+
+            titleEl.textContent = title;
+            source.src = videoUrl;
+            player.load();
+            modal.classList.add('active');
+            player.play();
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('globalVideoModal');
+            const player = document.getElementById('globalVideoPlayer');
+            player.pause();
+            modal.classList.remove('active');
+        }
+
+        document.getElementById('globalVideoModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+    </script>
+}

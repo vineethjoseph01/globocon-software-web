@@ -1,0 +1,417 @@
+@{
+    ViewData["Title"] = "AI Web App & Mobile Development Australia";
+    ViewData["Description"] = "Globocon Software Australia delivers custom enterprise AI software, modern web applications, mobile apps, and SaaS product engineering.";
+    var featuredVideos = ViewBag.FeaturedVideos as List<GloboconSoftwareWeb.Models.Video> ?? new List<GloboconSoftwareWeb.Models.Video>();
+}
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-container">
+        <div>
+            <div class="hero-badge">
+                <i class="fas fa-sparkles"></i> Next-Gen Artificial Intelligence
+            </div>
+            <h1 class="hero-title">AI-Powered Web &amp; Mobile Solutions for the Future</h1>
+            <p class="hero-tagline">
+                Globocon Software Australia helps businesses transform ideas into powerful digital solutions using Artificial Intelligence, modern software practices, and cloud technologies.
+            </p>
+            <div class="hero-actions">
+                <a asp-controller="Home" asp-action="Contact" class="btn-primary-custom">
+                    Consult Our AI Experts <i class="fas fa-arrow-right"></i>
+                </a>
+                <a asp-controller="Home" asp-action="Work" class="btn-outline-custom">
+                    <i class="fas fa-play-circle" style="color: var(--accent-blue);"></i> Watch Showcase
+                </a>
+            </div>
+        </div>
+        <div>
+            <div class="hero-card-preview">
+                <h3 style="font-size: 1.25rem; font-weight: 900; color: #fff; margin-bottom: 1.25rem;">The Globocon Advantage</h3>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">60%</span>
+                        <span class="stat-label">Faster Development</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Australian Standards</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Flagship AI Products</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Automated Efficiency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Overview -->
+<section class="section section-light">
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-subtitle">What We Do</span>
+            <h2 class="section-title">End-to-End AI &amp; Software Engineering</h2>
+            <p class="section-desc">We combine modern architectural patterns with artificial intelligence to deliver scalable enterprise software.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card-custom">
+                <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3 class="card-title">AI Web App Development</h3>
+                <p class="card-text">Intelligent web applications that automate business processes, improve user experience, and provide real-time insights.</p>
+                <ul class="card-list">
+                    <li>AI-powered dashboards &amp; analytics</li>
+                    <li>Business management systems</li>
+                    <li>Customer portals &amp; SaaS apps</li>
+                </ul>
+            </div>
+
+            <div class="card-custom">
+                <div class="card-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3 class="card-title">AI Mobile App Development</h3>
+                <p class="card-text">Modern mobile applications built natively for iOS and Android platforms with seamless cloud sync and AI capabilities.</p>
+                <ul class="card-list">
+                    <li>Customer &amp; Employee apps</li>
+                    <li>Field service &amp; Booking apps</li>
+                    <li>AI assistants &amp; productivity tools</li>
+                </ul>
+            </div>
+
+            <div class="card-custom">
+                <div class="card-icon"><i class="fas fa-cloud"></i></div>
+                <h3 class="card-title">SaaS Product Development</h3>
+                <p class="card-text">From initial architecture to market-ready product, we build scalable cloud-based SaaS solutions designed for growth.</p>
+                <ul class="card-list">
+                    <li>Product strategy &amp; UI/UX design</li>
+                    <li>Cloud &amp; Database architecture</li>
+                    <li>Subscription management &amp; AI integration</li>
+                </ul>
+            </div>
+
+            <div class="card-custom">
+                <div class="card-icon"><i class="fas fa-network-wired"></i></div>
+                <h3 class="card-title">Software Integrations</h3>
+                <p class="card-text">Connect disparate software systems into one unified intelligent ecosystem with robust API integrations.</p>
+                <ul class="card-list">
+                    <li>Xero, QuickBooks &amp; MYOB</li>
+                    <li>Salesforce &amp; CRM systems</li>
+                    <li>Microsoft 365 &amp; Google Workspace</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2.25rem;">
+            <a asp-controller="Home" asp-action="Services" class="btn-dark-custom">
+                Explore All Services <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- AI Products Highlight (High Contrast Dark Mode) -->
+<section class="section section-dark">
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-subtitle">Flagship AI Products</span>
+            <h2 class="section-title">Pre-Built AI Solutions Ready for Deployment</h2>
+            <p class="section-desc">Accelerate your digital transformation with our suite of specialized enterprise AI products.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card-custom" style="background: rgba(255,255,255,0.06); border: 2px solid rgba(0,229,255,0.3); backdrop-filter: blur(10px);">
+                <div>
+                    <span class="badge-pill" style="background: #00E5FF; color: #000414;">Workforce Management</span>
+                    <h3 class="card-title" style="margin-top: 0.65rem; color: #FFFFFF;">SmartRoster AI</h3>
+                    <p class="card-text" style="color: #CBD5E1;">Intelligent roster generation, staff availability management, location-based shift allocation, and payroll integration.</p>
+                </div>
+            </div>
+
+            <div class="card-custom" style="background: rgba(255,255,255,0.06); border: 2px solid rgba(0,229,255,0.3); backdrop-filter: blur(10px);">
+                <div>
+                    <span class="badge-pill" style="background: #0052EA; color: #FFFFFF;">Tax &amp; Accounting</span>
+                    <h3 class="card-title" style="margin-top: 0.65rem; color: #FFFFFF;">Smart Tax Booking AI</h3>
+                    <p class="card-text" style="color: #CBD5E1;">Automated customer tax assistance, document collection, online appointment scheduling, and tax enquiry management.</p>
+                </div>
+            </div>
+
+            <div class="card-custom" style="background: rgba(255,255,255,0.06); border: 2px solid rgba(0,229,255,0.3); backdrop-filter: blur(10px);">
+                <div>
+                    <span class="badge-pill" style="background: #00E5FF; color: #000414;">Healthcare</span>
+                    <h3 class="card-title" style="margin-top: 0.65rem; color: #FFFFFF;">Virtual Hospital AI</h3>
+                    <p class="card-text" style="color: #CBD5E1;">AI patient assistance, virtual consultations, appointment management, healthcare workflow automation, and digital record sync.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2.5rem;">
+            <a asp-controller="Home" asp-action="Products" class="btn-primary-custom">
+                Explore All AI Products <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+@using System.Web
+
+<!-- Featured Work Preview -->
+@if (featuredVideos.Any())
+{
+    <section class="section section-light">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-subtitle">Our Work Showcase</span>
+                <h2 class="section-title">See Our Products in Action</h2>
+                <p class="section-desc">Watch video previews of solutions engineered by Globocon Software Australia.</p>
+            </div>
+
+            <div class="video-grid">
+                @foreach (var video in featuredVideos)
+                {
+                    var encodedTitle = HttpUtility.JavaScriptStringEncode(video.Title);
+                    <div class="video-card" onclick="openVideoModal('@video.FilePath', '@encodedTitle')">
+                        <div class="video-thumbnail-wrapper">
+                            <video class="video-preview-element" preload="metadata" muted playsinline>
+                                <source src="@video.FilePath#t=0.5" type="video/mp4">
+                            </video>
+                            <div class="play-overlay-btn"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="video-info">
+                            <h4 class="video-card-title">@video.Title</h4>
+                            <div class="video-meta">
+                                <span><i class="far fa-calendar-alt"></i> @video.UploadDate.ToString("MMM dd, yyyy")</span>
+                                <span style="margin-left: auto; color: var(--accent-blue); font-weight: 700;">Play Video <i class="fas fa-play-circle"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div style="text-align: center; margin-top: 2.25rem;">
+                <a asp-controller="Home" asp-action="Work" class="btn-dark-custom">
+                    View Complete Video Showcase <i class="fas fa-video"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+}
+
+<!-- FAQ Accordion Section (Inspired by Confident Care Group) -->
+<section class="section section-light">
+    <div class="section-container">
+        <div class="section-header">
+            <span class="section-subtitle">Frequently Asked Questions</span>
+            <h2 class="section-title">Everything You Need to Know About Globocon AI Solutions</h2>
+            <p class="section-desc">Got questions about how our software engineering team builds custom web, mobile, and AI products?</p>
+        </div>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How fast can Globocon Software Australia launch a custom AI solution?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    By leveraging our pre-built AI product frameworks (SmartRoster AI, Virtual Hospital AI, Smart Tax Booking AI), we can deploy fully tailored enterprise applications in 60% less time than traditional agencies.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Are your software engineering practices aligned with Australian compliance standards?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes. All software systems built by Globocon adhere strictly to Australian Privacy Principles (APPs), local data encryption requirements, and Australian cloud hosting standards in Sydney and Melbourne.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Can Globocon integrate with our existing ERP or accounting software?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolutely. We specialize in seamless REST and GraphQL API integrations for Xero, MYOB, QuickBooks, Salesforce, Microsoft 365, and custom legacy SQL databases.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>How does Globocon ensure secure authentication and data protection?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    We implement multi-factor authentication (MFA/2FA), IP rate limiting, Cloudflare Turnstile anti-bot verification, encrypted databases, and role-based access control (RBAC).
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQPage JSON-LD Schema for SERP Rich Snippets -->
+<script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@@type": "Question",
+      "name": "How fast can Globocon Software Australia launch a custom AI solution?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "By leveraging our pre-built AI product frameworks (SmartRoster AI, Virtual Hospital AI, Smart Tax Booking AI), we can deploy fully tailored enterprise applications in 60% less time than traditional agencies."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "Are your software engineering practices aligned with Australian compliance standards?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Yes. All software systems built by Globocon adhere strictly to Australian Privacy Principles (APPs), local data encryption requirements, and Australian cloud hosting standards in Sydney and Melbourne."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "Can Globocon integrate with our existing ERP or accounting software?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "Absolutely. We specialize in seamless REST and GraphQL API integrations for Xero, MYOB, QuickBooks, Salesforce, Microsoft 365, and custom legacy SQL databases."
+      }
+    },
+    {
+      "@@type": "Question",
+      "name": "How does Globocon ensure secure authentication and data protection?",
+      "acceptedAnswer": {
+        "@@type": "Answer",
+        "text": "We implement multi-factor authentication (MFA/2FA), IP rate limiting, Cloudflare Turnstile anti-bot verification, encrypted databases, and role-based access control (RBAC)."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- CTA Banner -->
+<section class="section">
+    <div class="section-container">
+        <div class="cta-banner">
+            <h2 class="cta-title">Turn Your Idea Into Reality</h2>
+            <p class="cta-desc">Have an idea for an AI-powered product or custom enterprise software solution? Contact Globocon Software Australia today.</p>
+            <a asp-controller="Home" asp-action="Contact" class="btn-primary-custom" style="padding: 1rem 2rem; font-size: 1.05rem;">
+                Start Your Project <i class="fas fa-paper-plane"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Video Lightbox Modal -->
+<div class="modal-backdrop-custom" id="globalVideoModal">
+    <div class="modal-box">
+        <div class="modal-header-bar">
+            <div class="modal-title" id="globalVideoTitle">Video Showcase</div>
+            <button class="modal-close-btn" onclick="closeVideoModal()">&times;</button>
+        </div>
+        <div class="modal-video-wrapper">
+            <video class="modal-video-element" id="globalVideoPlayer" controls playsinline autoplay>
+                <source id="globalVideoSource" src="" type="video/mp4">
+                Your browser does not support HTML5 video playback.
+            </video>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const techData = {
+            ai: {
+                title: '<i class="fas fa-brain"></i> Artificial Intelligence & Machine Learning',
+                desc: 'We build custom Machine Learning models, natural language understanding engines, predictive analytics, and autonomous AI agents designed to automate complex corporate workflows and enhance decision-making.',
+                pills: ['Custom LLMs & RAG', 'Predictive Analytics', 'Natural Language Processing', 'Computer Vision & OCR']
+            },
+            cloud: {
+                title: '<i class="fas fa-cloud-upload-alt"></i> Enterprise Cloud Computing',
+                desc: 'High-availability serverless architectures, multi-region cloud deployment on AWS/Azure, and containerized microservices ensuring 99.99% uptime and elastic scalability for growing enterprise workloads.',
+                pills: ['AWS & Azure Cloud', 'Serverless Microservices', 'Auto-Scaling Infrastructure', 'Docker & Kubernetes']
+            },
+            web: {
+                title: '<i class="fas fa-code"></i> High-Performance Web Applications',
+                desc: 'Custom ASP.NET Core & Node.js web platforms featuring real-time data streaming, responsive multi-device layouts, automated customer self-service portals, and high-security compliance.',
+                pills: ['ASP.NET Core 8 MVC', 'Node.js & Express', 'Real-Time Dashboards', 'Customer Self-Service Portals']
+            },
+            mobile: {
+                title: '<i class="fas fa-mobile-alt"></i> Native & Cross-Platform Mobile Apps',
+                desc: 'Sleek iOS and Android mobile solutions built for field service management, workforce scheduling, logistics, and real-time push notifications with offline data synchronization.',
+                pills: ['iOS & Android Apps', 'Offline Data Sync', 'GPS & Geofencing', 'Push Notification Engine']
+            },
+            saas: {
+                title: '<i class="fas fa-layer-group"></i> Multi-Tenant SaaS Platforms',
+                desc: 'End-to-end SaaS engineering including multi-tenant database isolation, automated tier subscription billing via Stripe, enterprise user roles, and white-label customization.',
+                pills: ['Multi-Tenant Database', 'Stripe Billing & Subscriptions', 'RBAC Security Roles', 'White-Label Portals']
+            },
+            api: {
+                title: '<i class="fas fa-diagram-project"></i> Third-Party APIs & System Integration',
+                desc: 'Seamlessly connect disparate legacy platforms with modern cloud applications via RESTful APIs, Webhooks, Xero, MYOB, Salesforce, and Microsoft 365 integrations.',
+                pills: ['Xero & MYOB Sync', 'Salesforce & CRM Integration', 'RESTful API Engineering', 'Webhooks & Message Queues']
+            },
+            db: {
+                title: '<i class="fas fa-database"></i> High-Speed Database Solutions',
+                desc: 'Optimized SQL Server, PostgreSQL, and Redis caching solutions designed for sub-millisecond query performance, automated daily backups, and strict Australian Privacy Principle compliance.',
+                pills: ['SQL Server & PostgreSQL', 'Redis In-Memory Caching', 'Sub-millisecond Queries', 'Automated Encrypted Backups']
+            },
+            automation: {
+                title: '<i class="fas fa-cogs"></i> Enterprise Automation Systems',
+                desc: 'Eliminate repetitive operational overhead with automated background job queues, document parsing pipelines, automated email/SMS reminders, and real-time audit logging.',
+                pills: ['Background Worker Queues', 'Automated PDF Parsing', 'SMS & Email Triggers', 'Real-Time Audit Logging']
+            }
+        };
+
+        function selectTechCapability(key, btn) {
+            document.querySelectorAll('.tech-tab-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const data = techData[key];
+            if (data) {
+                document.getElementById('techDetailTitle').innerHTML = data.title;
+                document.getElementById('techDetailDesc').textContent = data.desc;
+                document.getElementById('techFeaturePills').innerHTML = data.pills.map(p => `<span class="tech-pill">${p}</span>`).join('');
+            }
+        }
+
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            item.classList.toggle('active');
+        }
+
+        function openVideoModal(videoUrl, title) {
+            const modal = document.getElementById('globalVideoModal');
+            const player = document.getElementById('globalVideoPlayer');
+            const source = document.getElementById('globalVideoSource');
+            const titleEl = document.getElementById('globalVideoTitle');
+
+            titleEl.textContent = title;
+            source.src = videoUrl;
+            player.load();
+            modal.classList.add('active');
+            player.play();
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('globalVideoModal');
+            const player = document.getElementById('globalVideoPlayer');
+            player.pause();
+            modal.classList.remove('active');
+        }
+
+        document.getElementById('globalVideoModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+    </script>
+}

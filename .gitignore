@@ -1,0 +1,12 @@
+## ASP.NET Core Build & Temporary Output Ignore List
+bin/
+obj/
+publish/
+publish_slim/
+*.zip
+.vs/
+.vscode/
+*.user
+*.suo
+app.db
+globocon.db
